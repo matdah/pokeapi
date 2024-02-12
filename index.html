@@ -36,10 +36,6 @@
             width: 200px;
             height: 300px;
             margin-top: 10px;
-            line-height: 150px;
-            color: white;
-            font-weight: bold;
-            font-size: 3em;
             text-align: center;
             position: relative;
         }
@@ -49,6 +45,14 @@
             bottom: 0;
             left: 0;
             width: 100%;
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .pokemon {
+            color: #fff;
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+            transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
 
         .pokemon img {
@@ -58,6 +62,12 @@
 
         .pokemon h2 {
             font-variant: small-caps;
+        }
+
+        .pokemon:hover {
+            transform: scale(1.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
         @keyframes jumpUpDown {
