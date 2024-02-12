@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Milligram CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+    <title>Titel</title>
+    <style>
+        .grid-container {
+            /* We first create a flex layout context */
+            display: flex;
+
+            /* Then we define the flow direction 
+     and if we allow the items to wrap 
+   * Remember this is the same as:
+   * flex-direction: row;
+   * flex-wrap: wrap;
+   */
+            flex-flow: row wrap;
+            /* Then we define how is distributed the remaining space */
+            justify-content: space-around;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            gap: 10px;
+        }
+
+        .grid-item {
+            background: tomato;
+            padding: 5px;
+            width: 200px;
+            height: 300px;
+            margin-top: 10px;
+            line-height: 150px;
+            color: white;
+            font-weight: bold;
+            font-size: 3em;
+            text-align: center;
+            position: relative;
+        }
+
+        .experience {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .pokemon img {
+            width: 100%;
+            /* animation: jumpUpDown 1s ease-in-out infinite; */
+        }
+
+        .pokemon h2 {
+            font-variant: small-caps;
+        }
+
+        @keyframes jumpUpDown {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Titel</h1>
+
+        <main>
+            <section id="pokemons" class="grid-container"></section>
+        </main>
+
+        <script>
+            const apiUrl = `https://pokeapi.co/api/v2/pokemon/`;
+
+            // Funktion för att hämta Pokemon-data baserat på ID
+            async function getPokemonData(pokemonId) {
+                try {
+                    const response = await fetch(`${apiUrl}${pokemonId}`);
+
+                    if (!response.ok) {
+                        throw new Error('Något gick fel vid hämtning av Pokemon-data.');
+                    }
+
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            async function loadPokemons() {
+                const pokemonsEl = document.getElementById("pokemons");
+                for (let i = 1; i < 10; i++) {
+                    // Load pokemon and output to DOM
+                    let pokemon = await getPokemonData(i);
+
+                    console.log(pokemon);
+
+
+
+                    let speed = 0.7 + Math.random() * 1.3;
+                    let experience = pokemon.base_experience;
+                    console.log(experience);
+
+                    pokemonsEl.innerHTML += `
+                        <article class="grid-item pokemon">
+                            <h2 >${pokemon.name} </h2>
+                            <img 
+                                src='${pokemon.sprites.front_default}' 
+                                alt=''
+                                style='animation: jumpUpDown ${speed}s ease-in-out infinite;'
+                            >
+                            <p class='experience'>
+                                ${experience}
+                            </p>
+                        </article>`;
+                }
+            }
+
+            loadPokemons();
+
+
+        </script>
+    </div>
+</body>
+
+</html>
