@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap');
+
+body {
+    font-family: "Protest Strike", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2em;
+    background-color: #2A5446;
+}
+
+main {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-bottom: 5em;
+}
+
+h1 {
+    text-align: center;
+    font-size: 5em;
+    margin: 20px 0;
+    font-variant: small-caps;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    letter-spacing: 24px;
+}
+
+h2 {
+    margin: 0.5em 0 0 0;
+    font-size: 2em;
+    letter-spacing: 4px;
+}
+
+.grid-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    gap: 10px;
+}
+
+.grid-item {
+    background: tomato;
+    padding: 5px;
+    width: 300px;
+    height: 400px;
+    margin-top: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.experience {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100%;
+    font-size: 2.5em;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.pokemon {
+    color: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.pokemon img {
+    width: 100%;
+    /* animation: jumpUpDown 1s ease-in-out infinite; */
+}
+
+.pokemon h2 {
+    font-variant: small-caps;
+    font-size: 2.4em;
+    margin-top: 8px;
+    letter-spacing: 4px;
+}
+
+.pokemon:hover {
+    transform: scale(1.5);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+@keyframes jumpUpDown {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+@keyframes scaleLetters {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(2.7);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animated-text {
+    display: inline-block;
+    font-size: 3.2em;
+}
+
+.animated-text span {
+    display: inline-block;
+    transform-origin: center;
+    animation: scaleLetters 2s infinite;
+}
